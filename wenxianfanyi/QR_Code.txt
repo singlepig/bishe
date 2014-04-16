@@ -1,0 +1,192 @@
+﻿________________
+
+section three
+QR Code
+There are several types of 2D codes in use by the industry, one of which is QR Code. This article provides an overview of QR Code, the standardisation activities on this technology and its applications in the various sectors.
+Tan Jin Soon Executive Director, EPCglobal Singapore Council Chairman, Automatic Data Capture Technical Committee
+1 INTRODUCTION
+During recent years, there are major developments in the adoption of 2D Codes such as:
+a) The directive by International Air Transport Association (IATA) for airports worldwide to adopt 2D bar code
+for passenger boarding passes by 2010.
+b) The adoption of QR Code for patient identification by two leading hospitals in Singapore and all hospitals
+in Hong Kong.
+c) The use of 2D bar codes/micro codes for various applications in the other sectors.
+d) The use of QR code with mobile phones in Japan and Korea. Examples of such applications are:
+• Large scale QR Codes on buildings to enable users to use mobile phone to scan the QR Code to retrieve information about the companies that are operating inside the buildings.
+• The use of mobile phone to scan the QR Code on the packaging of fruits or vegetables to retrieve information about the name of the farm from which the fruits and vegetables are grown and harvested; also the fertilisers and insecticide used. The QR Codes on the food packages when scanned will also enable consumers to download information on cooking recipes.
+• QR Codes for location based services on maps in the Tokyo subway and central bus stations. Passengers can use their mobile phones to scan the QR Code to find out the arrival time of the next bus.
+• ePayment using mobile phone and QR Code printed on the bills.
+• Mobile phone and QR Code for payment of tickets for Trains and Airlines services.
+• QR Code for TV programme guides using mobile phone to view the programme captured in QR Code.
+section three
+059
+________________
+  
+________________
+
+• QR Code for restaurants: The Japan Restaurant search site displays a QR Code for each restaurant to indicate its location and its famous dishes when the QR Code is scanned by a mobile phone.
+To tap the potential opportunities of 2D Codes, the IT Standards Committee and the industry are actively studying how to take advantage of the high ownership of mobile phones in Singapore to deploy 2D Codes including QR Code for use by consumers to meet their daily needs.
+2 WHAT IS QR CODE?
+QR Code is a two-dimensional symbol. It was invented in 1994 by Denso, one of major Toyota group companies, and approved as an ISO international standard (ISO/IEC18004) in June 2000. This two-dimentional symbol was initially intended for use in production control of automotive parts, but it has become widespread in other fields. Now QR Code is seen and used everyday everywhere in Japan for the following reasons:
+• Several characteristics superior to linear bar codes: much higher data density, support Kanji/Chinese character, etc.
+• It can be used by anybody free of charge as Denso has released the patent into the public domain.
+• Data structure standard is not prerequisite for current usages.
+• Most mobile phones in Japan equipped with cameras that enable reading of QR Codes can access Internet addresses automatically by simply reading a URL encoded in the QR Code.
+3 THE BACKGROUND OF QR CODE DEVELOPMENT
+In 1970, IBM developed UPC symbols consisting of 13 digits of numbers to enable automatic input into computers. These UPC symbols are still widely used for Point-Of-Sale (POS) system. In 1974, Code 39 which can encode (symbolise) approx. 30 digits of alphanumeric characters was developed. Then in the early 1980s, multistaged symbol codes where approx. 100 digits of characters can be stored such as Code 16K and Code 49 were developed. As informatisation rapidly developed in the recent years, requests had mounted for symbols which can store more information and represent languages other than English. To enable this, a symbol with even higher density than multistaged symbols was required. As a result, QR Code, which can contain 7,000 digits of characters at maximum including Kanji characters (Chinese characters used in Japan) was developed in 1994.
+The history until realising high-capacity and high-density symbols can be described as illustrated in Figure 1 when seeing them from the technology’s aspect. Firstly, Interleaved 2 of 5 and Codabar which can encode (symbolise) numbers were developed, followed by the development of Code 39 which can encode alphanumerical characters. Along with the informatisation developments, it had become necessary to have full ASCII enocded, and this resulted in the development of Code 128. Then, multistaged symbols were developed where these linear symbols were arranged in several stages. Toyota Motor’s Kanban Code is the world’s first multistaged symbol. As computers became popular, these codes developed into multi-row symbols where multistaged codes were extended and into matrix symbols where data were arranged in matrix. The printing area for matrix symbols are the smallest among all, and is seen as highly prospective as the main symbol for the future.
+QR Code is a matrix symbol which has been developed as the one enabling all of high capacity PDF417, high density printing of data matrix, and high speed reading of maxi code based on the research made on their characteristics.
+060
+synthesis journal 2008
+________________
+  
+________________
+
+Two-dimensional symbols generally contain much more data amount when compared with linear symbols (approx. 100 times more), and therefore require much longer data processing time and more complex process. Therefore, QR Code has had much consideration for its finder pattern to enable high-speed reading.
+Number of digits 10,000
+1,000
+100
+10
+Linear
+Multistaged symbol
+Multi-row symbols
+Matrix symbols
+High Data Capacity
+PDF417
+Code 49
+QR code
+Code 16K UPC code
+1970
+1975 1980 1985 1990 Year
+Reduce Space Printing
+Code 39
+QR code
+DATA MATRIX
+Figure 1: The history of symbols
+Figure 2: The development of the symbols
+High Speed Reading
+MAXI Code
+Figure 3: The development of QR Code
+section three
+061
+________________
+  
+________________
+
+4 CHARACTERISTICS OF THE QR CODE
+Additional to the characteristics for two-dimensional symbols such as large volume data (7,089 numerical characters at maximum), high-density recording (approx. 100 times higher in density than linear symbols), and high-speed reading, QR Code has other superiority in both performance and functionalities aspects.
+a) All-Direction (360°) High-Speed Reading Reading matrix symbols will be implemented by using a CCD sensor (area sensor). The data of the scan line captured by the sensor will be stored into the memory. Then, by using the software, the details will be analysed, finder patterns identified, and the position/size/angle of the symbol detected, and the decoding process will be implemented. Traditional two-dimensional symbols used to take much time for detecting the position/angle/size of the symbol, and had a problem that their readings were less accurate when compared with those of linear symbols. QR Code has finder patterns for notifying the position of the symbol arranged in three of its corners to enable high-speed reading in all directions (360°). The ratio between black and white among the scan line that runs through the finder patterns is always 1:1:3:1:1 when seen from any direction among the 360° surrounding it. By detecting this specific ratio, the finder pattern can be detected from among the image captured by the CCD sensor to identify the position of the QR Code in a short period of time. Additionally, by identifying the positional relationships of the three finder patterns listed in Figure 5 from among the image field of the CCD sensor, the size (L), the angle (θ), and the outer shape of the symbol can be simultaneously detected. By arranging the finder patterns into the three corners of the symbol, the decoding speed of the QR Code can be made 20 times faster than that of other matrix symbols. Additionally, detecting finder patterns can be easily implemetned by the hardware, and can also be accelerated.
+(c)
+1 1 3 1 1 (b)
+(a)
+1 1 3 1 1 X (a)
+(b)
+(c)
+1 1 3 1 1 Figure 4: Finder Patterns
+synthesis journal 2008
+Y
+L
+Figure 5: Identifying a QR Code
+062
+________________
+  
+________________
+
+b) Resistant to Distorted Symbols Symbols often get distorted when attached onto a curved surface or by the reader being tilted (angled between the CCD sensor face and the symbol face). To correct this distortion, QR Code has alignment patterns arranged with a regular interval within the range of the symbol. The variance between the centre position of the alignment pattern estimated from the outer shape of the symbol and the acutal centre position of the alignment pattern will be calculated to have the mappings (for identifying the centre position of each cell) corrected. This will make the distorted linear/ non-linear symbols readable.
+Estimated centre position
+Centre point
+Correct the variance
+c) Data Restoration Functionality (Resistant to Smudged or Damaged Symbols) QR Code has four different error correction levels (7%, 15%, 25%, and 30% per symbol area). The error correction functionality is implemented according to each of the smudge/damage, and is utilising Reed-Solomon code which is highly resistant to burst errors. Reed-Solomon codes are arranged in the QR Code data area. By this error correction functionality, the codes can be read correctly even when they are smudged or damaged up until the error correction level. The error correction level can be configured by the user when he/she creates the symbol. So if the code is highly likely to get smudged in the users’ usage environment, it is recommended to have 30% set for this correction level.
+d) Efficiently Encoding of Kanji and Kana Characters QR Code has been developed based on the premise that it will be used in Japan. The specifications for the symbol has efficiently encoded JIS level-1 & 2 Kanji and Kana characters. When making Japanese expressions using other two- dimensional symbols, the expression would have to be made in binaries and would require 16 bits (2 bytes) for a single
+Figure 6: Correcting Distorted Symbols
+Figure 7: Smudged/Damaged Symbols
+section three
+063
+________________
+  
+________________
+
+character, whereas QR Code has each Japanese character encoded in 13 bits. This means that QR Code can have Japanese letters encoded 20% more efficiently than other two-dimensional symbols. In other words, if the data volume is the same, the symbol can be generated in a smaller area. Codes in each country will be using the language in that specific country, and this functionality will enable encoding of the specific language in an efficient manner, such as having Chinese characters for China and Vietnamese for Vietnam efficiently encoded.
+e) Linking Functionality of the Symbols QR Code has a linking functionality which will enable a single symbol to be represented in several symbols by dividing it . A single symbol can be divided into 16 symbols at maximum. The example shown in Figure 8 is one where a single QR Code is divided into four symbols, and each symbol has an indicator showing how many symbols the original symbol had been divided into and in which order that specific symbol would be among all divided ones. This will enable the entire data to be edited and submitted to the computer regardless of what order the symbols had been read by the reader. By this linking functionality, the QR Code will be able to be printed even if the printing space is not wide enough to have a single QR Code printed.
+1/4 2/4 3/4 4/4
+Figure 8: Linking the Symbols
+f) Masking Process By having special patterns to process masking, QR Code is enabled to have black and white cells well arranged in a balanced order. To accurately binalize the data that had been read, it is necessary to arrange the white and black cells in a well-balanced manner. To enable this, EX-OR calculation will be implemented between the data area cell and the mask pattern (template) cell when encoding the stored data and arranging it into the data area. Then, the number of unique patterns exisiting and the balance between the white cells and the black cells will be assessed against the data area where the calculation had been implemented. There are eight mask patterns. Assessment will be made for each mask pattern, and the mask pattern with the highest assessment result together with the EX-OR calculation result will be stored into the data area.
+064
+synthesis journal 2008
+________________
+  
+________________
+
+g) The Confidentiality of the Code By making the relationship between the character type and the stored data unique for a special usage, QR Code can be easily encrypted. Unless the conversion table between the character type and the stored data is deciphered, no one will be able to read the QR Code.
+h) Direct Marking QR Code exerts superior readability even for symbols which are directly marked using laser or dot pin markers. For directly marked symbols, the cell shape does not necessarily have to be square as shown in Figure 10. It can also be circular shape. Even if the white part (with high reflectance) and the black part (with low reflectance) are inverted due to the angle of the illuminating ray, the code can still be read in an accurate manner. It is also possible to read from the back side of the symbol when it is marked upon a transparant material such as glass, etc.
+Direct marking
+When seen from the front
+When seen from the back
+< Circular cells > < Black and white cells inverted >
+< Front/back inverted >
+Select one Mask processing results
+Masked patterns
+Original pattern
+Figure 9: Masking Process
+Figure 10: Direct Marking
+section three
+065
+________________
+  
+________________
+
+5 THE QR CODE STRUCTURE
+QR Code is a matrix type symbol with a cell structure arranged in a square. It consists of the functionality patterns for making reading easy and the data area where the data is stored. QR Code has finder patterns, alignment patterns, timing patterns, and a quiet zone
+Figure 11: The QR Code Structure
+a) Finder Pattern A pattern for detecting the position of the QR Code. By arranging this pattern at the three corners of a symbol, the position, the size, and the angle of the symbol can be detected. This finder pattern consists of a structure which can be detected in all directions (360°). (Please refer to 4a)
+b) Alignment Pattern A pattern for correcting the distortion of the QR Code. It is highly effective for correcting nonlinear distortions. The central coordinate of the alignment pattern will be identified to correct the distortion of the symbol. For this purpose, a black isolated cell is placed in the alignment pattern to make it easier to detect the central coordinate of the alignment pattern. (Please refer to 4b)
+c) Timing Pattern A pattern for identifying the central coordinate of each cell in the QR Code with black and white patterns arranged alternately. It is used for correcting the central coordinate of the data cell when the symbol is distorted or when there is an error for the cell pitch. It is arranged in both vertical and horizontal directions. (Please refer to 4b)
+066
+synthesis journal 2008
+Finder pattern
+Timing pattern
+Alignment pattern
+Cell
+Quiet zone
+________________
+  
+________________
+
+d) Quiet Zone A margin space necessary for reading the QR Code. This quiet zone makes it easier to have the symbol detected from among the image read by the CCD sensor. Four or more cells are necessary for the quiet zone.
+e) Data Area The QR Code data will be stored (encoded) into the data area. The grey part in Figure 11 represents the data area. The data will be encoded into the binary numbers of ‘0’ and ‘1’ based on the encoding rule. The binary numbers of ‘0’ and ‘1’ will be converted into black and white cells and then will be arranged. The data area will have Reed-Solomon codes incorporated for the stored data and the error correction functionality.
+6 THE SPECIFICATIONS OF THE QR CODE
+The specifications of the QR Code are as described in Table 1.
+Symbol size Min. 21x21 cell - Max. 177x177 cell (with 4-cells interval)
+Information type Numerical characters 7,089 characters at maximum and volume
+Alphabets, signs 4,296 characters at maximum
+Binary (8 bit) 2,953 characters at maximum
+Kanji characters 1,817 characters at maximum
+Conversion efficiency Numerical characters mode 3.3 cells/character
+Alphanumerical/signs mode 5.5 cells/character
+Binary (8 bit) mode 8 cells/character
+Kanji character mode (13 bit) 13 cells/character
+Error correction Level L Approx. 7% of the symbol area functionality restored at maximum
+Level M Approx. 15% of the symbol area
+restored at maximum
+Level Q Approx. 25% of the symbol area
+restored at maximum
+Level H Approx. 30% of the symbol area
+restored at maximum
+Linking functionality Possible to be divided into 16 symbols at maximum
+Table 1: The specifications of the QR Code
+section three
+067
+________________
+  
+________________
+
+a) Symbol Size QR Code can have its size freely selected according to the data volume to be stored and the reading method. The symbol size is incremented by four cells in both vertical and horizontal direction - 21x21 cells, 25x25 cells, 29x29 cells..., and there are 40 size types with the maximum size set to 177x177 cells.
+For example, in the case for 45x45 cells, if a single square cell is sized 0.25mm, one side of the symbol will be 45x0.25mm = 11.25mm. The quiet zone will need to be added on both sides of the symbol whose minimum size is four cells, and therefore, the space required for having this symbol printed will be a square of (4+45+4)x0.25mm which is 13.25mm.
+b) Information Type and Volume QR Code can handle various types of data such as numerical characters, alphabets, signs, Kanji characters, Hiragana, Katakana, control signs, and images. It can basically have character sets supported by ISO/IEC 646 and ISO/IEC 10646. These data can also coexist. The maximum available volume of the information is listed in Table 1.
+c) Data Conversion Efficiency QR Code has four types of conversion mode - numerical characters, alphanumerical/signs, binary, and Kanji characters - for encoding the data. Each mode has had considerations to improve its conversion efficiency. The number of cells required for each character in each mode is listed in Table 1.
+d) Error Correction Functionality QR Code has an error correction functionality for restoring the data. There are four different restoration levels so that you can select the level that matches with each usage environment. Each restoration capability is as listed in Table 1.
+7 STANDARDISING THE QR CODE
+To make the adoption of QR Code wide spread, the infrastructure needs to be maintained so that the users can use them in a safe manner. The most important among the entire infrastructure is to standardise the symbols.
+QR Code had been established as an AIM International Standard (AIM-ITS 97/01), which is a standard in the automatic identification industry, in October 1997. Then, it was registered in the Japanese Industrial Standards (JIS-X0510) in 1999, and was also adopted as the standard two-dimensional symbol to be used for EDI standard transaction forms in the Japanese automobile industry (JAMA-EIE001) in the same year. It was proposed as a standard to ISO/IEC JTC 1 SC 31 based on these AIM International Standard, Japan Industrial Standard, and the Japanese automotive standard code. It was approved as an ISO/IEC JTC 1 international standard (ISO/IEC 18004) in 2000. Additionally, since it can efficiently handle various languages used in various countries such as Chinese characters, it has been adopted by Guojia Biaozhun (Chinese National Standard) in 2000 (GB/T 18284), by Korean National Standards in 2002 (KS-X ISO/IEC 18004), and by Tien Chuan Viet Nam (Vietnam National Standard) in 2003 (TCVN7322).
+068
+synthesis journal 2008
