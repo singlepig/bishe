@@ -1,5 +1,2 @@
 # ingore the image file
-/program/*.png
-/program/*.jpeg
-/program/*.jpg
-/program/*.bmp
+/program/temp
