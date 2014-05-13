@@ -51,8 +51,7 @@ def showHelp(args):
 
 
 
-
-if __name__ == '__main__':
+def main():
     args=sys.argv
     showArgs(args)
     if len(args)==1 or len(args)==2 or args[1]== '-h' or args[1]== '--help':
@@ -65,6 +64,7 @@ if __name__ == '__main__':
             print decodeQR(args[2])
         except:
             pass
+    '''
     elif args[1]=='-e':
         try:
             print "generated file: " + gen_qrpic(args[2],args[3])
@@ -72,3 +72,7 @@ if __name__ == '__main__':
             pass
     else:
         print 'Illegal arguments.'
+        '''
+
+if __name__ == '__main__':
+    main()
