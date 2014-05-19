@@ -30,7 +30,8 @@ class Index(object):
     """首页
     """
     def GET(self):
-        return render.index()
+        data = "解码后的信息将显示在这里。"
+        return render.index(data)
 
 
 class QR(object):
@@ -264,7 +265,7 @@ class Decode(object):
     def POST(self):
         img = web.input(qrimg={})
         # save img file {
-        save_path = '.'
+        save_path = './uploads'
         fname=img['qrimg'].filename
         img_save = open(save_path + '/' + fname, 'wb')
         img_save.write(img.qrimg.file.read())
@@ -272,7 +273,7 @@ class Decode(object):
         # }
         img_read = save_path + '/' + fname
         msg = self.decodeQR(img_read)
-        print msg
+        print "The info in QR is :" + msg
         return render.index(msg)
 
 

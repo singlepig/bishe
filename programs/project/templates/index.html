@@ -1,4 +1,4 @@
-$def with()
+$def with(data)
 
 
 <!DOCTYPE html>
@@ -129,9 +129,9 @@ $def with()
                 通信1004 - 学号11 - 高永圣
             </h1>
         </div>
-        <div id="code" style="margin: 0 atuo;">
+        <div id="code" >
             <div id="encode" >
-            <form method="get" action="/qr">
+                <form method="get" action="/qr">
                 <ul class="none">
                     <li class="first">
                         <label for="text">输入内容</label>
@@ -170,15 +170,15 @@ $def with()
                         <button class="button" type="submit" >生成 → </button>
                     </li>
                 </ul>
-            </form>
+                </form>
             </div>
             <div id="decode">
-            <form method="post" enctype="multipart/form-data" action="/decode">
-                <input type="file" name="qrimg" />
-                <br/>
-                <input type="submit" value="解码"/>
-            </form>
-            <p>data</p>
+                <form method="post" enctype="multipart/form-data" action="/decode">
+                    <input type="file" name="qrimg" />
+                    <br/>
+                    <input type="submit" value="解码"/>
+                </form>
+                <p>$data</p>
             </div>
         </div>
     </div>
