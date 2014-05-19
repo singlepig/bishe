@@ -5,6 +5,7 @@ import cStringIO
 import urllib
 import web
 import qrcode
+import zbar
 try:
     from PIL import Image
 except ImportError:
@@ -16,6 +17,7 @@ web.config.debug = True
 urls = (
     '/', 'Index',  # 首页
     '/qr', 'QR',  # 二维码图片
+    '/decode', 'Decode',
     '/.*', 'Index',
 )
 
@@ -188,11 +190,7 @@ class QR(object):
         return (MIME, new_im_data)
 
     def GET(self):
-        # TODO 解决 IE 浏览器下地址栏输入中文出现编码错误的情况
-
-        # 能直接在地址栏输入非 ASCII 字符的参数值（非 IE 浏览器），后台自动解码
-        # querys = web.ctx.query # 它及 web.input() 将字符都变成了类似 u'%B3%B5' 导致不能解码
-        # 解决非 IE 浏览器下地址栏输入中文出现的编码问题， IE 浏览器暂时无解
+        
         querys = web.ctx.env['QUERY_STRING']
         if querys == '':
             return web.badrequest()
@@ -244,6 +242,40 @@ class QR(object):
         MIME, data = self.show_image(**args)
         web.header('Content-Type', MIME)
         return data
+
+class Decode(object):
+    """解码
+    """
+    def decodeQR(self, fileName):
+        '''解析QR码'''
+        scanner = zbar.ImageScanner()
+        scanner.parse_config("enable")
+        pil = Image.open(fileName).convert('L')
+        width, height = pil.size
+        raw = pil.tostring()
+        image = zbar.Image(width, height, 'Y800', raw)
+        scanner.scan(image)
+        data = ''
+        for symbol in image:
+            data+=symbol.data
+        del(image)
+        return data
+
+    def POST(self):
+        img = web.input(qrimg={})
+        # save img file {
+        save_path = '.'
+        fname=img['qrimg'].filename
+        img_save = open(save_path + '/' + fname, 'wb')
+        img_save.write(img.qrimg.file.read())
+        img_save.close()
+        # }
+        img_read = save_path + '/' + fname
+        msg = self.decodeQR(img_read)
+        print msg
+        return render.index(msg)
+
+
 
 if __name__ == '__main__':
     # web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
