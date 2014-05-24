@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-#Name:      qrcode.py
+#Name:      code.py
 #Author:    singlepig
 #e-mail:    gys.nanjing@gmail.com
 
