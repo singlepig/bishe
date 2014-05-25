@@ -6,3 +6,6 @@ programs/temp/*
 programs/project/uploads/*.png
 programs/project/uploads/*.svg
 programs/project/uploads/*.jpg
+# 忽略所有gedit编辑的缓存文件
+*~
+
