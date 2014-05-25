@@ -48,21 +48,21 @@ class QR(object):
         chld = chld.upper()
         # chld 是非必需参数，有默认值
         if not chld:
-            chld = 'M|4'
+            chld = 'M|1'
         # 处理 chld 参数值
         chld = chld.split('|')
         if len(chld) == 2:  # e.g. 'M|2'
             try:
                 border = int(chld[1])  # 二维码与图片的边距
             except:
-                border = 4
+                border = 1
         elif len(chld) == 1:  # e.g. 'M'
-            border = 4
+            border = 1
         level = chld[0]  # 纠错级别
         if level not in ['L', 'M', 'Q', 'H']:
             level = 'M'  # 默认纠错级别
         if border < 0:
-            border = 4
+            border = 1
 
         try:
             chs = chs.lower()
@@ -193,23 +193,37 @@ class QR(object):
         temp_img.close()  # 释放内存
         return (MIME, new_im_data)
 
+    def splitItem():
+        """分割chl中的内容，一行为一条资产记录"""
+        pass
+
     def GET(self):
         
         querys = web.ctx.env['QUERY_STRING']
         if querys == '':
+            ''' querys like this : chl=aaa&chs=350x350&chld=M 
+                type is str
+            '''
             return web.badrequest()
-
         querys = querys.split('&')
+        ''' querys turn to : ['chl=aaa','chs=350x350','chld=M'] 
+            type is list
+        '''
+        print querys
         try:
             # 分割参数，能处理类似 'chl===hello&chls=200x200&chld=M|3'
             values = [x.split('=', 1) for x in querys]
+            '''values like this : [['chl', 'aaa'], ['chs', '350x350'], ['chld', 'M']] 
+                可以处理由于多个=号引起的解析错误,如： chl===wo
+            '''
+            print values
             querys = {}
             for i in values:
                 if len(i) == 1 and i[0] == 'chld':  # chld 是非必需参数
-                    querys.setdefault(i[0], 'M|4')
+                    querys.setdefault(i[0], 'M|1')
                 elif len(i) == 2 and i[0] in ['chl', 'chs', 'chld']:
                     querys.setdefault(i[0], i[1])
-            # print querys
+            print querys  # querys is : {'chs': '350x350', 'chl': 'aaa', 'chld': 'M'}
         except:
             return web.badrequest()
 
@@ -218,7 +232,7 @@ class QR(object):
         chs = querys.get('chs')
         if chl is None or chs is None:
             return web.badrequest()
-        chld = querys.get('chld', 'M|4')
+        chld = querys.get('chld', 'M|1')
 
         chl = urllib.unquote(chl)
         chl = charset.encode(chl)  # 将字符串解码然后按 utf8 编码
