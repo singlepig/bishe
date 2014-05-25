@@ -134,29 +134,33 @@ $def with(data)
     <body>
     <div id="main">
         <div id="header">
-            <img src="static/suning_logo.gif">
+            <a href="/"><img src="/static/suning_logo.gif" alt="logo"></a>
             </img>
             <div >
               <p>
                 苏宁易购-IT运营总部
               </p>
               <p>
-                服务器资产标签生成界面                  
+                服务器资产标签生成界面
               </p>
             </div>
         </div>
         <div id="code" >
             <div id="encode" >
-                <form method="post" enctype="multipart/form-data" action="/qr">
+                <form method="post" enctype="multipart/form-data" action="/qr" target="a">
                 <ul class="none">
                     <li class="first">
                         <label for="text">输入内容</label>
                     </li>
                     <li class="second">
-                        <textarea id="text" name="chl" required="true"  autofocus="true" rows="3" value=""></textarea>
+                        <textarea id="text" name="chl" autofocus="true" rows="3" value=""></textarea>
                     </li>
                 </ul>
                 <div class="fixed"></div>
+                <ul class="none">
+                  <li class="first">添加文件</li>
+                  <li class="second"><input type="file" name="chl" /></li>
+                </ul>
                 <ul class="none">
                     <li class="first">尺寸</li>
                     <li class="second">

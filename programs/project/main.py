@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import time
 import cStringIO
 import urllib
 import web
@@ -75,7 +76,6 @@ class QR(object):
             if (size[0] * size[1] == 0 or size[0] < 0 or size[1] < 0 or (
                     size[0] > 600) or size[1] > 600):
                 raise web.badrequest()
-
         # 由于生成的二维码图片是个正方形，所以由 size 的最小值组成的正方形
         # 来限制二维码图片大小
         square_size = size[0] if size[0] <= size[1] else size[1]
@@ -193,7 +193,7 @@ class QR(object):
         temp_img.close()  # 释放内存
         return (MIME, new_im_data)
 
-    def splitItem():
+    def splitItem(sefl):
         """分割chl中的内容，一行为一条资产记录"""
         pass
 
@@ -248,17 +248,37 @@ class QR(object):
     def POST(self):
         """处理 POST 数据
         """
-        querys = web.input(chs='300x300')
+        querys = web.input()
+        print "querys.chl="
+        print querys.chl
+        print "querys.chl type is :"
+        print type(querys.chl)
+        #for line in 
         # 因为 web.input() 的返回的是 unicode 编码的数据，
         # 所以将数据按 utf8 编码以便用来生成二维码
-        chl = querys.chl.encode('utf8')
+        chl = querys.chl #.encode('utf8')
+        chl_list = chl.split('\n')
+        print "chl_list is :"
+        print chl_list
         chs = querys.chs
-        if chl is None or chs is None:
-            return web.badrequest()
-        chld = querys.chld
-        args = self.handle_parameter(chl, chld, chs)
-        MIME, data = self.show_image(**args)
-        web.header('Content-Type', MIME)
+        for chl in chl_list:
+            if not chl:
+                pass
+            else:
+                if chl is None or chs is None:
+                    return web.badrequest()
+                chld = querys.chld
+                args = self.handle_parameter(chl, chld, chs)
+                MIME, data = self.show_image(**args)
+                web.header('Content-Type', MIME)
+                # save img file {
+                tagfile = open('tags/' + str(time.time()) + '.png', 'wb')
+                tagfile.write(data)
+                tagfile.close
+                print "save data success!"
+                print "data type is:" ,
+                print type(data)
+                # }
         return data
 
 class Decode(object):
@@ -281,6 +301,7 @@ class Decode(object):
 
     def POST(self):
         img = web.input(qrimg={})
+        print type(img)
         # save img file {
         save_path = './uploads'
         fname=img['qrimg'].filename
