@@ -39,6 +39,9 @@ class QR(object):
     """
     def handle_parameter(self, chl, chld, chs):
         """处理表单提交的变量
+            chl=编码内容
+            chs=图片尺寸
+            chld=纠错级别
         """
         if len(chl) > 2953:  # 最大容量
             raise web.badrequest()
