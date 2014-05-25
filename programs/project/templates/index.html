@@ -4,7 +4,7 @@ $def with(data)
 <!DOCTYPE html>
 <html>
     <head>
-        <title>二维码生成与识别</title>
+        <title>苏宁易购</title>
         <meta charset="utf-8" />
         <meta name="description" content="QR code" />
         <link href="/static/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -18,6 +18,9 @@ $def with(data)
               border-bottom: 1px solid #F2F7FC;
               text-align: center;
             }
+            #header img{
+              float: left;
+            }
             #header span {
               color: #5E6B75;
               font-weight: normal;
@@ -29,12 +32,16 @@ $def with(data)
               margin: 0;
               padding: 12px;
             }
+
             p {
               font-size: 20px;
             }
 
             h2 {
                 font-size: 14px;
+            }
+            #code {
+              float: left;
             }
             #encode {
                 font-size: 11px;
@@ -97,8 +104,6 @@ $def with(data)
               font-weight: normal;
               width: 280px;
             }
-
-
             .fixed {
                     clear: both;
                 }
@@ -123,14 +128,22 @@ $def with(data)
               padding: 5px 7px;
               text-decoration: none;
             }
+
         </style>
     </head>
     <body>
     <div id="main">
         <div id="header">
-            <h1>
-                通信1004 - 学号11 - 高永圣
-            </h1>
+            <img src="static/suning_logo.gif">
+            </img>
+            <div >
+              <p>
+                苏宁易购-IT运营总部
+              </p>
+              <p>
+                服务器资产标签生成界面                  
+              </p>
+            </div>
         </div>
         <div id="code" >
             <div id="encode" >
