@@ -5,8 +5,8 @@ $def with(msg)
 <html>
     <head>
         <title>苏宁易购</title>
-        <meta charset="utf-8" />
-        <meta name="description" content="QR code" />
+        <meta content="text/html;charset=utf-8" http-equiv="content-type"></meta>
+        <meta name="description" content="QR code"></meta>
         <link href="/static/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <style>
             body, ul, select, button {
@@ -32,29 +32,34 @@ $def with(msg)
               margin: 0;
               padding: 12px;
             }
-
             p {
               font-size: 20px;
             }
-
-            h2 {
-                font-size: 14px;
-            }
-            #code {
+            label {
               float: left;
+              font-size: 24px;
+              font-weight: bold;
+              font-style: oblique;
+              color: rgba(0, 0, 0, 1);
+            }
+            #bat {
+              font-size: 16px;
+              margin: 10px 0;
+              height :50%;
+              width:45%;
+              float:right;
             }
             #encode {
-                font-size: 11px;
-                margin: 10px 0;
-                border-style:dashed;
-                height :50%;
-                width:45%;
-                float:left;
+              font-size: 16px;
+              margin: 10px 0;
+              height :50%;
+              width:45%;
+              float:left;
+              text-align: right;
             }
             #decode {
-              font-size: 11px;
+              font-size: 16px;
               margin: 10px 0;
-              border-style:dashed;
               height :50%;
               width:45%;
               float:right;
@@ -80,62 +85,30 @@ $def with(msg)
                 padding: 0.2em;
                 margin: 0em 0.1em;
             }
-            .textarea {
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-                margin: 0em 0em 0.1em 0em;
-            }
-            .textarea {
-                -moz-border-bottom-colors: none;
-                -moz-border-image: none;
-                -moz-border-left-colors: none;
-                -moz-border-right-colors: none;
-                -moz-border-top-colors: none;
-                border-color: #666666 #CCCCCC #CCCCCC;
-                border-right: 1px solid #CCCCCC;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial Unicode MS,Arial,sans-serif;
-                font-size: 100%;
-                padding: 4px;
-            }
-            .textarea {
-              color: #000000;
-              font-weight: normal;
-              width: 280px;
+            .first{
+                color: #5E6B75;
+                font-weight: bold;
+                padding: 4px 0;
+                text-align: right;
+                vertical-align: top;
+                width: 100px;
+                float: left;
+                margin: 0em 0.1em;              
             }
             .fixed {
                     clear: both;
-                }
+            }
             ul.none {
                 list-style-type: none;
                 padding-left: 0px;
                 margin-top: 0.2em;
             }
-            .button {
-              -moz-border-bottom-colors: none;
-              -moz-border-image: none;
-              -moz-border-left-colors: none;
-              -moz-border-right-colors: none;
-              -moz-border-top-colors: none;
-              border-color: #BBBBBB #BBBBBB #A0A0A0;
-              border-radius: 3px 3px 3px 3px;
-              border-style: solid;
-              border-width: 1px;
-              cursor: pointer;
-              font-size: small;
-              margin: 0;
-              padding: 5px 7px;
-              text-decoration: none;
-            }
-
         </style>
     </head>
     <body>
     <div id="main">
         <div id="header">
-            <a href="/"><img src="/static/suning_logo.gif" alt="logo"></a>
-            </img>
+            <a href="/"><img src="/static/suning_logo2.gif" alt="logo"></a>
             <div >
               <p>
                 苏宁易购-IT运营总部
@@ -146,7 +119,8 @@ $def with(msg)
             </div>
         </div>
         <div id="code" >
-            <div id="encode" >
+            <div id="bat" >
+              <label>批量生成</label>
                 <form method="post" enctype="multipart/form-data" action="/qr" target="a">
                 <div class="fixed"></div>
                 <ul class="none">
@@ -179,12 +153,29 @@ $def with(msg)
                 <ul class="none">
                     <li class="first"></li>
                     <li class="second">
-                        <input type="submit" value="生成 →" />
+                        <input type="submit" value="批量生成 →" />
                     </li>
                 </ul>
                 </form>
             </div>
+
+            <div id="encode">
+              <label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手动输入</label>
+              <form method="get" action="/qr" target="a">
+                  资产编号: <input type="text" name="Number" /></p>
+                  资产名称: <input type="text" name="Name" /></p>
+                  品牌: <input type="text" name="Brand" /></p>
+                  型号: <input type="text" name="Type" /></p>
+                  Serial Number: <input type="text" name="SN" /></p>
+                  使用部门: <input type="text" name="Department" /></p>
+                  负责人: <input type="text" name="Head" /></p>
+
+                <input type="submit" value="生成">
+              </form>
+            </div>
+
             <div id="decode">
+              <label>解码&nbsp;</label>
                 <form method="post" enctype="multipart/form-data" action="/decode">
                     <input type="file" name="qrimg" />
                     <br/>

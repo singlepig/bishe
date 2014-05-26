@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import time
+import chardet
 import cStringIO
 import urllib
 import web
@@ -164,6 +164,8 @@ class QR(object):
                 box_size=box_size,
                 border=border,
             )
+            print "qr.add_data(content) ,content is :"
+            print content
             qr.add_data(content)
             qr.make(fit=True)
             im = qr.make_image()
@@ -188,16 +190,10 @@ class QR(object):
         new_im_data = temp_img.getvalue()
         # 图片 MIME 类型
         MIME = ImageMIME().get_image_type(new_im_data)
-
         temp_img.close()  # 释放内存
         return (MIME, new_im_data)
 
-    def splitItem(sefl):
-        """分割chl中的内容，一行为一条资产记录"""
-        pass
-
     def GET(self):
-        
         querys = web.ctx.env['QUERY_STRING']
         if querys == '':
             ''' querys like this : chl=aaa&chs=350x350&chld=M 
@@ -208,6 +204,7 @@ class QR(object):
         ''' querys turn to : ['chl=aaa','chs=350x350','chld=M'] 
             type is list
         '''
+        print "querys is:"
         print querys
         try:
             # 分割参数，能处理类似 'chl===hello&chls=200x200&chld=M|3'
@@ -215,33 +212,46 @@ class QR(object):
             '''values like this : [['chl', 'aaa'], ['chs', '350x350'], ['chld', 'M']] 
                 可以处理由于多个=号引起的解析错误,如： chl===wo
             '''
-            print values
+            print "values is:"
+            print values           
             querys = {}
-            for i in values:
-                if len(i) == 1 and i[0] == 'chld':  # chld 是非必需参数
-                    querys.setdefault(i[0], 'M|1')
-                elif len(i) == 2 and i[0] in ['chl', 'chs', 'chld']:
-                    querys.setdefault(i[0], i[1])
-            print querys  # querys is : {'chs': '350x350', 'chl': 'aaa', 'chld': 'M'}
+            chl = ''
+            temp_list = []
+            for n in range(len(values)):
+                temp_list.append(values[n][1])
+            chl = ':'.join(temp_list)
+            print "chl is :"
+            print chl
         except:
             return web.badrequest()
 
-        chl = querys.get('chl')
-        chl = chl.replace('+', '%20')  # 解决空格变加号，替换空格为 '%20'
-        chs = querys.get('chs')
-        if chl is None or chs is None:
-            return web.badrequest()
-        chld = querys.get('chld', 'M|1')
-
+        #chl = querys.get('chl')
+        chl = chl.replace('+', '%20') # 解决空格变加号，替换空格为 '%20'
+        chs = '350x350'
+        chld = 'M|1'
+        print "chl type is :"
+        print type(chl)
         chl = urllib.unquote(chl)
+        print "urllib.unquote(chl) is:"
+        print chl
         chl = charset.encode(chl)  # 将字符串解码然后按 utf8 编码
+        print "charset.encode(chl)"
+        print chl
         if chl is None:
             return web.badrequest()
-        # print repr(chl)
-        # TODO 如果编码不是 utf8，编码(quote())后重定向到 UTF8 编码后的链接
         args = self.handle_parameter(chl, chld, chs)
+        print "args is :"
+        print args
         MIME, data = self.show_image(**args)
         web.header('Content-Type', MIME)
+        # save img file {
+        tagfile = open('tags/' + chl.split(':')[0] + '.png', 'wb')
+        tagfile.write(data)
+        tagfile.close
+        print "save data success!"
+        print "data type is:" ,
+        print type(data)
+        # }
         return data
 
     def POST(self):
@@ -257,7 +267,7 @@ class QR(object):
         #for line in 
         # 因为 web.input() 的返回的是 unicode 编码的数据，
         # 所以将数据按 utf8 编码以便用来生成二维码
-        chl = querys.chl #.encode('utf8')
+        chl = querys.chl #encode('utf8')
         chl_list = chl.split('\n')
         print "chl_list is :"
         print chl_list
@@ -298,7 +308,20 @@ class Decode(object):
         for symbol in image:
             data+=symbol.data
         del(image)
+        print "decodeQR data is:"
+        print data
+        print "chardet.detect(data) is :"
+        print chardet.detect(data)
         return data
+
+    def fun(str):
+        '''判断是否乱码'''
+        try:
+            pass
+        except Exception, e:
+            raise e
+        else:
+            pass
 
     def POST(self):
         img = web.input(qrimg={})
@@ -312,10 +335,20 @@ class Decode(object):
         # }
         img_read = save_path + '/' + fname
         msg = self.decodeQR(img_read)
-        print "The info in QR is :" + msg
+        try:   
+            msg = msg.decode('utf-8').encode('sjis').decode('utf-8')
+        except UnicodeEncodeError:   
+            pass
+
+        print "The info in QR is :"
+        print msg
         return render.index(msg)
 
-
+class Gen(object):
+    """Generate the QRcode according to the infomation user typed in."""
+    def GET(self):
+        pass
+        
 
 if __name__ == '__main__':
     # web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
