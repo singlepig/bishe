@@ -344,12 +344,6 @@ class Decode(object):
         print msg
         return render.index(msg)
 
-class Gen(object):
-    """Generate the QRcode according to the infomation user typed in."""
-    def GET(self):
-        pass
-        
-
 if __name__ == '__main__':
     # web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
     app.run()
