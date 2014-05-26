@@ -1,4 +1,4 @@
-$def with(data)
+$def with(msg)
 
 
 <!DOCTYPE html>
@@ -148,26 +148,18 @@ $def with(data)
         <div id="code" >
             <div id="encode" >
                 <form method="post" enctype="multipart/form-data" action="/qr" target="a">
-                <ul class="none">
-                    <li class="first">
-                        <label for="text">输入内容</label>
-                    </li>
-                    <li class="second">
-                        <textarea id="text" name="chl" autofocus="true" rows="3" value=""></textarea>
-                    </li>
-                </ul>
                 <div class="fixed"></div>
                 <ul class="none">
-                  <li class="first">添加文件</li>
+                  <li class="first">资产列表文件</li>
                   <li class="second"><input type="file" name="chl" /></li>
                 </ul>
                 <ul class="none">
                     <li class="first">尺寸</li>
                     <li class="second">
                         <select name="chs" class="listbox">
-                            <option value="120x120">120*120</option>
-                            <option value="230x230">230*230</option>
-                            <option value="350x350" selected="selected">350*350</option>
+                            <option value="120x120">小</option>
+                            <option value="230x230" selected="selected">中</option>
+                            <option value="350x350">大</option>
                         </select>
                     </li>
                 </ul>
@@ -187,7 +179,7 @@ $def with(data)
                 <ul class="none">
                     <li class="first"></li>
                     <li class="second">
-                        <button class="button" type="submit" >生成 → </button>
+                        <input type="submit" value="生成 →" />
                     </li>
                 </ul>
                 </form>
@@ -198,7 +190,7 @@ $def with(data)
                     <br/>
                     <input type="submit" value="解码"/>
                 </form>
-                <p>$data</p>
+                <p>$msg</p>
             </div>
         </div>
     </div>

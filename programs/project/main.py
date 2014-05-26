@@ -31,8 +31,8 @@ class Index(object):
     """首页
     """
     def GET(self):
-        data = "解码后的信息将显示在这里。"
-        return render.index(data)
+        msg = "解码后的信息将显示在这里。"
+        return render.index(msg)
 
 
 class QR(object):
@@ -64,7 +64,6 @@ class QR(object):
             level = 'M'  # 默认纠错级别
         if border < 0:
             border = 1
-
         try:
             chs = chs.lower()
             size = tuple([int(i) for i in chs.split('x')])
@@ -253,6 +252,8 @@ class QR(object):
         print querys.chl
         print "querys.chl type is :"
         print type(querys.chl)
+        print "querys.chs ="
+        print querys.chs
         #for line in 
         # 因为 web.input() 的返回的是 unicode 编码的数据，
         # 所以将数据按 utf8 编码以便用来生成二维码
