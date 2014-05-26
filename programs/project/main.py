@@ -272,7 +272,7 @@ class QR(object):
                 MIME, data = self.show_image(**args)
                 web.header('Content-Type', MIME)
                 # save img file {
-                tagfile = open('tags/' + str(time.time()) + '.png', 'wb')
+                tagfile = open('tags/' + chl.split()[0] + '.png', 'wb')
                 tagfile.write(data)
                 tagfile.close
                 print "save data success!"
