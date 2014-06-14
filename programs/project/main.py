@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import chardet
 import cStringIO
 import urllib
 import web
@@ -14,18 +13,6 @@ except ImportError:
 from lib.mime import ImageMIME
 from lib import charset
 
-web.config.debug = True
-urls = (
-    '/', 'Index',  # 首页
-    '/qr', 'QR',  # 二维码图片
-    '/decode', 'Decode',
-    '/.*', 'Index',
-)
-
-# 应用模板
-render = web.template.render('templates')
-app = web.application(urls, globals())
-
 
 class Index(object):
     """首页
@@ -33,7 +20,6 @@ class Index(object):
     def GET(self):
         msg = "解码后的信息将显示在这里。"
         return render.index(msg)
-
 
 class QR(object):
     """处理传来的数据并显示 QR Code 二维码图片
@@ -44,7 +30,7 @@ class QR(object):
             chs=图片尺寸
             chld=纠错级别
         """
-        if len(chl) > 2953:  # 最大容量
+        if len(chl) > 2953:  # V40-L最大容量
             raise web.badrequest()
         chld = chld.upper()
         # chld 是非必需参数，有默认值
@@ -132,7 +118,6 @@ class QR(object):
                 raise web.badrequest()
             error_correction = qrcode.constants.ERROR_CORRECT_H
 
-        # 根据 python-qrcode 源码、square_size 及 version 参数求 box_size
         box_size = square_size / ((version * 4 + 17) + border * 2)
         # print box_size
         args = {'version': version,
@@ -170,7 +155,6 @@ class QR(object):
             qr.make(fit=True)
             im = qr.make_image()
 
-        # im.show()
         # 将生成的二维码图片保存到内存中，用于下面的缩放处理
         temp_img = cStringIO.StringIO()
         im.save(temp_img, 'png')
@@ -213,7 +197,7 @@ class QR(object):
                 可以处理由于多个=号引起的解析错误,如： chl===wo
             '''
             print "values is:"
-            print values           
+            print values
             querys = {}
             chl = ''
             temp_list = []
@@ -264,10 +248,7 @@ class QR(object):
         print type(querys.chl)
         print "querys.chs ="
         print querys.chs
-        #for line in 
-        # 因为 web.input() 的返回的是 unicode 编码的数据，
-        # 所以将数据按 utf8 编码以便用来生成二维码
-        chl = querys.chl #encode('utf8')
+        chl = querys.chl
         chl_list = chl.split('\n')
         print "chl_list is :"
         print chl_list
@@ -279,11 +260,14 @@ class QR(object):
                 if chl is None or chs is None:
                     return web.badrequest()
                 chld = querys.chld
+                chl = chl.replace('\t',':')
+                print "chl = chl.replace('\t',':')"
+                print chl
                 args = self.handle_parameter(chl, chld, chs)
                 MIME, data = self.show_image(**args)
                 web.header('Content-Type', MIME)
                 # save img file {
-                tagfile = open('tags/' + chl.split()[0] + '.png', 'wb')
+                tagfile = open('tags/' + chl.split(':')[0] + '.png', 'wb')
                 tagfile.write(data)
                 tagfile.close
                 print "save data success!"
@@ -310,18 +294,7 @@ class Decode(object):
         del(image)
         print "decodeQR data is:"
         print data
-        print "chardet.detect(data) is :"
-        print chardet.detect(data)
         return data
-
-    def fun(str):
-        '''判断是否乱码'''
-        try:
-            pass
-        except Exception, e:
-            raise e
-        else:
-            pass
 
     def POST(self):
         img = web.input(qrimg={})
@@ -345,5 +318,14 @@ class Decode(object):
         return render.index(msg)
 
 if __name__ == '__main__':
-    # web.wsgi.runwsgi = lambda func, addr=None: web.wsgi.runfcgi(func, addr)
+    web.config.debug = True
+    urls = (
+        '/', 'Index', 
+        '/qr', 'QR',  
+        '/decode', 'Decode', 
+        '/.*', 'Index'
+    )
+    # 应用模板
+    render = web.template.render('templates')
+    app = web.application(urls, globals())
     app.run()
